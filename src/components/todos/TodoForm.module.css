@@ -1,0 +1,53 @@
+.todo-form {
+  max-width: 50%;
+  margin: auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin-top: 5%;
+}
+.todo-form div {
+  display: flex;
+  margin-top: 20px;
+  flex-direction: column;
+}
+
+.todo-form input,
+.todo-form textarea {
+  padding: 0.5rem;
+}
+
+.todo-form textarea {
+  resize: none;
+}
+
+.todo-form input:focus,
+.todo-form textarea:focus {
+  outline: none;
+}
+
+.todo-form div label {
+  margin-top: 2px;
+}
+
+.todo-form button {
+  width: 75px;
+  height: 30px;
+  align-self: flex-end;
+  background-color: #3498db;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  color: white;
+}
+
+.todo-form button:hover {
+  background-color: #277ab1;
+  transition: 0.2s all ease-out;
+}
+
+.todo-form div:nth-child(3) {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
