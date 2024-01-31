@@ -2,6 +2,7 @@ import { type FormEvent, useRef } from "react";
 import styles from "./TodoForm.module.css";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../db/firebase";
+import Button from "../ui/Button";
 
 export default function TodoForm() {
   const titleRef = useRef<HTMLInputElement>(null);
@@ -45,10 +46,9 @@ export default function TodoForm() {
         </div>
         <div>
           <input type="checkbox" id="complete" ref={isCompleted} />
-
           <label htmlFor="complete">Completed</label>
         </div>
-        <button>Add Task</button>
+        <Button>Add Task</Button>
       </form>
     </div>
   );
