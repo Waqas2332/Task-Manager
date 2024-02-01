@@ -2,7 +2,7 @@ import { type FormEvent, useRef } from "react";
 import styles from "./TodoForm.module.css";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../db/firebase";
-import Button from "../ui/Button";
+import { Button } from "../../@/components/button.tsx";
 
 export default function TodoForm() {
   const titleRef = useRef<HTMLInputElement>(null);

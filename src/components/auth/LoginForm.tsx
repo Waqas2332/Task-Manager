@@ -7,8 +7,8 @@ import {
 import { useRef } from "react";
 import { FcGoogle } from "react-icons/fc";
 
-import Button from "../ui/Button";
 import styles from "./LoginForm.module.css";
+import { Button } from "../../@/components/button.tsx";
 
 export default function LoginForm() {
   const emailRef = useRef<HTMLInputElement>(null);
