@@ -10,7 +10,7 @@ export default function Header() {
       <div>
         <Link to="/todos/all-todos">View Todos</Link>
         <Link to="/todo/add-todo">Add Todo</Link>
-        <Link to="/">Login</Link>
+        <Link to="/login">Login</Link>
         <Link to="/">Logout</Link>
       </div>
     </header>
