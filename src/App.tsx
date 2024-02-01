@@ -10,12 +10,14 @@ export default function App() {
   return (
     <>
       <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/todo/add-todo" element={<AddTodo />} />
-        <Route path="/auth/login" element={<Login />} />
-        {/* <Route path="/todo/add-todo" element={<AddTodo />} > */}
-      </Routes>
+      <main className="flex flex-col h-[85vh] items-center space-y-6 justify-center">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/todo/add-todo" element={<AddTodo />} />
+          <Route path="/auth/login" element={<Login />} />
+          {/* <Route path="/todo/add-todo" element={<AddTodo />} > */}
+        </Routes>
+      </main>
     </>
   );
 }
