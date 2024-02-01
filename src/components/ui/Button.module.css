@@ -1,14 +1,18 @@
 button {
-  width: 75px;
-  height: 30px;
-  background-color: #00599b;
+  width: 100px;
+  height: 40px;
+  background-color: white;
   border: none;
   outline: none;
+  font-size: 18px;
+  text-align: center;
   border-radius: 5px;
-  color: white;
+  color: black;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
 }
 
 button:hover {
-  background-color: #277ab1;
   transition: 0.2s all ease-out;
+  border: none;
 }
