@@ -22,9 +22,15 @@ import { useForm } from "react-hook-form";
 import { loginSchema } from "../../schemas/index.ts";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTransition } from "react";
+import { useNavigate } from "react-router-dom";
 
-export default function LoginForm() {
+type LoginFormProps = {
+  onAuthenticate: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export default function LoginForm({ onAuthenticate }: LoginFormProps) {
   const [isPending, startTransition] = useTransition();
+  const navigate = useNavigate();
 
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
@@ -42,7 +48,9 @@ export default function LoginForm() {
       createUserWithEmailAndPassword(auth, values.email, values.password)
         .then((userCredential) => {
           const user = userCredential.user;
-          console.log(user);
+          localStorage.setItem("user", user.email!);
+          navigate("/todo/all-todos");
+          onAuthenticate(true);
         })
         .catch((error) => {
           console.log(error);
@@ -54,10 +62,10 @@ export default function LoginForm() {
     console.log("Hello");
     signInWithPopup(auth, provider)
       .then((result) => {
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential?.accessToken;
         const user = result.user;
-        console.log(user, result, token);
+        localStorage.setItem("user", user.email!);
+        navigate("/todo/all-todos");
+        onAuthenticate(true);
       })
       .catch((error) => {
         console.log(error);
