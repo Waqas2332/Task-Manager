@@ -112,14 +112,15 @@ export default function LoginForm() {
                 >
                   Login
                 </Button>
-                <p className="text-center">OR</p>
+
                 <Button
                   type="button"
                   variant="outline"
-                  className="w-full mt-8"
+                  className="w-full mt-8 space-x-2"
                   onClick={handleGoogleSignIn}
                   size="default"
                 >
+                  <span>Sign in With Google</span>
                   <FcGoogle className="w-5 h-5" />
                 </Button>
               </div>
