@@ -23,7 +23,7 @@ export default function App() {
   return (
     <>
       <Header />
-      <main className="flex flex-col h-[85vh] items-center space-y-6 justify-center">
+      <main className="flex flex-col min-h-[85vh] items-center space-y-6 justify-center">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route
