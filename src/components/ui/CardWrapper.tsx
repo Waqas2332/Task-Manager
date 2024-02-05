@@ -21,7 +21,7 @@ export default function CardWrapper({
   description,
 }: CardWrapperProps) {
   return (
-    <Card className="w-[450px]">
+    <Card className="sm:w-[90%] md:w-[450px] ">
       <CardHeader className="text-center">
         <CardTitle>{title}</CardTitle>
         <CardDescription>{description}</CardDescription>
