@@ -1,13 +1,11 @@
 import { type FormEvent, useRef } from "react";
-import styles from "./TodoForm.module.css";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../db/firebase";
 import { Button } from "../../@/components/button.tsx";
+import { FaPlus } from "react-icons/fa6";
 
 export default function TodoForm() {
   const titleRef = useRef<HTMLInputElement>(null);
-  const descriptionRef = useRef<HTMLTextAreaElement>(null);
-  const isCompleted = useRef<HTMLInputElement>(null);
 
   const currentDate = new Date();
   const year = currentDate.getFullYear();
@@ -23,9 +21,8 @@ export default function TodoForm() {
     try {
       const taskRef = await addDoc(collection(db, "tasks"), {
         title: titleRef.current?.value,
-        descriptionRef: descriptionRef.current?.value,
-        isCompleted: isCompleted.current?.checked,
         createdAt: formattedDate,
+        user: localStorage.getItem("user"),
       });
       console.log(taskRef);
     } catch (error) {
@@ -35,20 +32,25 @@ export default function TodoForm() {
 
   return (
     <div>
-      <form className={styles["todo-form"]} onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="title">Task Title</label>
-          <input type="text" id="title" ref={titleRef} />
+      <form
+        className="flex gap-3 sm:w-[90%] md:w-[450px]"
+        onSubmit={handleSubmit}
+      >
+        <div className="flex flex-col w-[80%]">
+          <label className="text-white" htmlFor="title">
+            Add New Task
+          </label>
+          <input
+            type="text"
+            id="title"
+            className="p-2 outline-none rounded-md"
+            ref={titleRef}
+          />
         </div>
-        <div>
-          <label htmlFor="description">Task Description</label>
-          <textarea rows={10} id="description" ref={descriptionRef}></textarea>
-        </div>
-        <div>
-          <input type="checkbox" id="complete" ref={isCompleted} />
-          <label htmlFor="complete">Completed</label>
-        </div>
-        <Button>Add Task</Button>
+
+        <Button className="mt-6">
+          <FaPlus />
+        </Button>
       </form>
     </div>
   );

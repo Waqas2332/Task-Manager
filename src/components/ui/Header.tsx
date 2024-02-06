@@ -8,8 +8,7 @@ export default function Header() {
           <Link to="/">SyncUP</Link>
         </div>
         <div className="space-x-6">
-          <Link to="/todo/all-todos">View Tasks</Link>
-          <Link to="/todo/add-todo">Add Task</Link>
+          <Link to="/todo/all-todos">Task Manager</Link>
           <Link to="/auth/login">Login</Link>
           <Link to="/">Logout</Link>
         </div>
