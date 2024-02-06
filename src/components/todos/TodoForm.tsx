@@ -22,6 +22,7 @@ export default function TodoForm() {
       const taskRef = await addDoc(collection(db, "tasks"), {
         title: titleRef.current?.value,
         createdAt: formattedDate,
+        isCompleted: false,
         user: localStorage.getItem("user"),
       });
       console.log(taskRef);

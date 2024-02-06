@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../db/firebase";
 import Spinner from "../ui/Spinner";
+import TasksList from "./TasksList";
 
-type Task = {
+export type Task = {
   id?: string;
   title?: string;
   isCompleted?: boolean;
@@ -39,13 +40,5 @@ export default function AllTodos() {
     getTasks();
   }, []);
 
-  return (
-    <div>
-      {isLoading ? (
-        <Spinner /> // Show spinner while loading
-      ) : (
-        tasks.map((task) => <p key={task.id}>{task.title}</p>)
-      )}
-    </div>
-  );
+  return <div>{isLoading ? <Spinner /> : <TasksList tasks={tasks} />}</div>;
 }
