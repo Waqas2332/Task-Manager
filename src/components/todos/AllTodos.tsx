@@ -19,5 +19,13 @@ export default function AllTodos({
     getTasks();
   }, []);
 
-  return <div>{isLoading ? <Spinner /> : <TasksList tasks={tasks} />}</div>;
+  return (
+    <div>
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <TasksList isLoading={isLoading} getTasks={getTasks} tasks={tasks} />
+      )}
+    </div>
+  );
 }
