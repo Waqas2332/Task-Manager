@@ -5,5 +5,9 @@ type LoginProps = {
 };
 
 export default function Login({ onAuthenticate }: LoginProps) {
-  return <LoginForm onAuthenticate={onAuthenticate} />;
+  return (
+    <section className="flex items-center justify-center mt-12 mb-20">
+      <LoginForm onAuthenticate={onAuthenticate} />;
+    </section>
+  );
 }

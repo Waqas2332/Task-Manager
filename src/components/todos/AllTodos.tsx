@@ -1,41 +1,20 @@
-import { useEffect, useState } from "react";
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "../../db/firebase";
+import { useEffect } from "react";
+
 import Spinner from "../ui/Spinner";
 import TasksList from "./TasksList";
+import { Task } from "../../pages/Todos";
 
-export type Task = {
-  id?: string;
-  title?: string;
-  isCompleted?: boolean;
-  user?: string;
-  createdAt?: string;
-  description?: string;
+type AllTodosProps = {
+  isLoading: boolean;
+  tasks: Task[];
+  getTasks: () => void;
 };
 
-export default function AllTodos() {
-  const [tasks, setTasks] = useState<Task[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-
-  async function getTasks() {
-    setIsLoading(true);
-    const collectionRef = collection(db, "tasks");
-    getDocs(collectionRef)
-      .then((snapshot) => {
-        const tasksData: Task[] = [];
-        snapshot.docs.forEach((doc) => {
-          tasksData.push({
-            ...doc.data(),
-            id: doc.id,
-          });
-        });
-        setTasks(tasksData);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  }
-
+export default function AllTodos({
+  isLoading,
+  getTasks,
+  tasks,
+}: AllTodosProps) {
   useEffect(() => {
     getTasks();
   }, []);

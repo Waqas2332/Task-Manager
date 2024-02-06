@@ -1,4 +1,4 @@
-import { Task } from "./AllTodos";
+import { Task } from "../../pages/Todos";
 import { MdDeleteForever } from "react-icons/md";
 
 type TaskItemProps = {
@@ -16,7 +16,7 @@ export default function TaskItem({ task }: TaskItemProps) {
         <p
           className={`${
             task.isCompleted ? "line-through text-gray-500" : ""
-          } text-white`}
+          } text-white capitalize`}
         >
           {task.title}
         </p>

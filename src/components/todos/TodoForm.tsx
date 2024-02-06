@@ -4,7 +4,11 @@ import { db } from "../../db/firebase";
 import { Button } from "../../@/components/button.tsx";
 import { FaPlus } from "react-icons/fa6";
 
-export default function TodoForm() {
+type TodoFormProps = {
+  getTasks: () => void;
+};
+
+export default function TodoForm({ getTasks }: TodoFormProps) {
   const titleRef = useRef<HTMLInputElement>(null);
 
   const currentDate = new Date();
@@ -19,13 +23,13 @@ export default function TodoForm() {
     event.preventDefault();
 
     try {
-      const taskRef = await addDoc(collection(db, "tasks"), {
+      await addDoc(collection(db, "tasks"), {
         title: titleRef.current?.value,
         createdAt: formattedDate,
         isCompleted: false,
         user: localStorage.getItem("user"),
       });
-      console.log(taskRef);
+      await getTasks();
     } catch (error) {
       console.log(error);
     }
@@ -37,7 +41,7 @@ export default function TodoForm() {
         className="flex gap-3 sm:w-[90%] md:w-[450px]"
         onSubmit={handleSubmit}
       >
-        <div className="flex flex-col w-[80%]">
+        <div className="flex flex-col w-[90%]">
           <label className="text-white" htmlFor="title">
             Add New Task
           </label>
