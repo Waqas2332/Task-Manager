@@ -22,7 +22,10 @@ export default function App() {
 
   return (
     <>
-      <Header />
+      <Header
+        isAuthenticated={isAuthenticated}
+        setIsAuthenticated={setAuthenticated}
+      />
       <main className="flex flex-col min-h-[85vh]">
         <Routes>
           <Route path="/" element={<Home />} />
