@@ -1,7 +1,8 @@
 import { Task } from "../../pages/Todos";
 import { MdDeleteForever } from "react-icons/md";
-import { deleteDoc, doc } from "firebase/firestore";
+import { deleteDoc, doc, updateDoc } from "firebase/firestore";
 import { db } from "../../db/firebase";
+import { useState } from "react";
 
 type TaskItemProps = {
   task: Task;
@@ -9,10 +10,30 @@ type TaskItemProps = {
 };
 
 export default function TaskItem({ task, getTasks }: TaskItemProps) {
+  const [isCompleted, setIsCompleted] = useState(task.isCompleted);
+
   async function handleDelete() {
     try {
       await deleteDoc(doc(db, "tasks", task.id!));
       await getTasks();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function handleComplete() {
+    const newIsCompleted = !isCompleted;
+    setIsCompleted(newIsCompleted);
+
+    try {
+      const taskRef = doc(db, "tasks", task.id!);
+      console.log(isCompleted);
+
+      await updateDoc(taskRef, {
+        isCompleted: newIsCompleted,
+      });
+
+      getTasks();
     } catch (error) {
       console.log(error);
     }
@@ -23,7 +44,10 @@ export default function TaskItem({ task, getTasks }: TaskItemProps) {
       <div className="flex items-center space-x-2">
         <input
           type="checkbox"
+          checked={isCompleted}
+          disabled={isCompleted}
           className="form-checkbox h-5 w-5 text-indigo-600 rounded"
+          onChange={handleComplete}
         />
         <p
           className={`${
