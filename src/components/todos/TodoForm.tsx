@@ -32,6 +32,8 @@ export default function TodoForm({ getTasks }: TodoFormProps) {
       await getTasks();
     } catch (error) {
       console.log(error);
+    } finally {
+      titleRef.current!.value = " ";
     }
   }
 
@@ -48,7 +50,7 @@ export default function TodoForm({ getTasks }: TodoFormProps) {
           <input
             type="text"
             id="title"
-            className="p-2 outline-none rounded-md"
+            className="p-2 ps-4 outline-none rounded-md"
             ref={titleRef}
           />
         </div>
